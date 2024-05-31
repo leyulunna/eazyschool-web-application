@@ -31,7 +31,7 @@ Author URL: http://w3layouts.com
                         </h3>
                         <p class="banner-sub">Active Learning, Expert Teachers & Safe Environment</p>
                         <div class="d-flex align-items-center buttons-banner">
-                            <a class="btn btn-style mt-lg-5 mt-4">Admission Now</a>
+                            <a th:href="@{/contact}" class="btn btn-style mt-lg-5 mt-4">Admission Now</a>
                         </div>
                     </div>
                     <div class="col-md-6 right-banner-2 text-end position-relative mt-md-0 mt-5">
@@ -114,7 +114,7 @@ Author URL: http://w3layouts.com
                         <li><i class="fas fa-check-circle"></i>Access more than 100K online courses</li>
                         <li><i class="fas fa-check-circle"></i>Traditional Academies</li>
                     </ul>
-                    <a class="btn btn-style mt-5">Apply Now</a>
+                    <a th:href="@{/contact}" class="btn btn-style mt-5">Apply Now</a>
                 </div>
             </div>
         </div>
@@ -250,7 +250,83 @@ Author URL: http://w3layouts.com
     <!-- //testimonials block -->
 
     <!-- courses section -->
-    <div th:replace="courses.html"></div>
+    <div class="w3l-grids-block-5 home-course-bg py-5" id="courses">
+        <div class="container py-md-5 py-4">
+            <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+                <p class="text-uppercase">Best Courses</p>
+                <h3 class="title-style">Wide variety of Courses for your Child</h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="coursecard-single">
+                        <div class="grids5-info position-relative">
+                            <img src="assets/images/c1.jpg" alt="" class="img-fluid" />
+                            <div class="meta-list">
+                                <a>Education</a>
+                            </div>
+                        </div>
+                        <div class="content-main-top">
+                            <div class="content-top mb-4 mt-3">
+                                <ul class="list-unstyled d-flex align-items-center justify-content-between">
+                                    <li> <i class="fas fa-book-open"></i> 43 Lesson</li>
+                                    <li> <i class="fas fa-star"></i> 4.9</li>
+                                </ul>
+                            </div>
+                            <h4><a>Educational Programs</a></h4>
+                            <p>Educations programmes covering core concepts of Maths,
+                                English, Science.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                    <div class="coursecard-single">
+                        <div class="grids5-info position-relative">
+                            <img src="assets/images/c2.jpg" alt="" class="img-fluid" />
+                            <div class="meta-list">
+                                <a class="sec-2">Meditation</a>
+                            </div>
+                        </div>
+                        <div class="content-main-top">
+                            <div class="content-top mb-4 mt-3">
+                                <ul class="list-unstyled d-flex align-items-center justify-content-between">
+                                    <li> <i class="fas fa-book-open"></i> 72 Lesson</li>
+                                    <li> <i class="fas fa-star"></i> 4.6</li>
+                                </ul>
+                            </div>
+                            <h4><a>Best Meditation Classes</a></h4>
+                            <p>Special program focusing the meditation to encourage students
+                                from early age.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-lg-0 mt-4">
+                    <div class="coursecard-single">
+                        <div class="grids5-info position-relative">
+                            <img src="assets/images/c3.jpg" alt="" class="img-fluid" />
+                            <div class="meta-list">
+                                <a class="sec-3">Games</a>
+                            </div>
+                        </div>
+                        <div class="content-main-top">
+                            <div class="content-top mb-4 mt-3">
+                                <ul class="list-unstyled d-flex align-items-center justify-content-between">
+                                    <li> <i class="fas fa-book-open"></i> 14 Lesson</li>
+                                    <li> <i class="fas fa-star"></i> 5.0</li>
+                                </ul>
+                            </div>
+                            <h4><a>Games Program in a Week</a></h4>
+                            <p> Games program encouraging the children on the physical
+                                activities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-sm-5 mt-4 pt-sm-0 pt-1">
+                <a th:href="@{/courses}" class="btn btn-style btn-style-secondary mt-sm-3">
+                    Browse more courses</a>
+            </div>
+        </div>
+    </div>
     <!-- //courses section -->
 
     <!-- call block -->
@@ -266,7 +342,7 @@ Author URL: http://w3layouts.com
                         <li class="phone-sec me-lg-4"><i class="fas fa-phone-volume"></i>
                             <a class="call-style-w3" href="tel:+1(23) 456 789 0000">+1(23) 673 458 1111</a>
                         </li>
-                        <li><a class="btn btn-style btn-style-2 mt-lg-0 mt-3">Join for free</a>
+                        <li><a th:href="@{/contact}" class="btn btn-style btn-style-2 mt-lg-0 mt-3">Join for free</a>
                         </li>
                     </ul>
                 </div>
