@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class Contact {
+public class Contact extends BaseEntity {
 
     /*
     * @NotNull: Checks if a given field is not null but allows empty values & zero elements inside collections.
@@ -34,4 +34,5 @@ public class Contact {
     @Size(min=10, message="Message must be at least 10 characters long")
     private String message;
 
+    private String status;
 }

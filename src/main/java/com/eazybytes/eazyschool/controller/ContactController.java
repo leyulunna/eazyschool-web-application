@@ -38,7 +38,9 @@ public class ContactController {
             log.error("Contact form validation failed due to : " + errors.toString());
             return "contact.html";
         }
+
         contactService.saveMsgDetail(contact);
+
         return "redirect:/contact";
     }
 }
