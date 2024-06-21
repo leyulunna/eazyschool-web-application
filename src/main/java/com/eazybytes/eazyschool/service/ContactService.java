@@ -21,8 +21,8 @@ public class ContactService {
     public boolean saveMsgDetail(Contact contact) {
         boolean isSaved = false;
         contact.setStatus(EazySchoolConstants.OPEN);
-        contact.setCreatedBy(EazySchoolConstants.ANONYMOUS);
-        contact.setCreatedAt(LocalDateTime.now());
+//        contact.setCreatedBy(EazySchoolConstants.ANONYMOUS);
+//        contact.setCreatedAt(LocalDateTime.now());
         Contact savedContact = contactRepository.save(contact);
         if(null != savedContact && savedContact.getContactId()>0) {
             isSaved = true;
@@ -35,14 +35,14 @@ public class ContactService {
         return contactMsgs;
     }
 
-    public boolean updateMsgStatus(int contactId, String updatedBy){
+    public boolean updateMsgStatus(int contactId){
         boolean isUpdated = false;
         Optional<Contact> contact = contactRepository.findById(contactId);
         // if the contact obj is not null, do the series of call in the lambda func
         contact.ifPresent(contact1 -> {
             contact1.setStatus(EazySchoolConstants.CLOSE);
-            contact1.setUpdatedBy(updatedBy);
-            contact1.setUpdatedAt(LocalDateTime.now());
+//            contact1.setUpdatedBy(updatedBy);
+//            contact1.setUpdatedAt(LocalDateTime.now());
         });
         Contact updatedContact = contactRepository.save(contact.get());
         if(null != updatedContact && updatedContact.getUpdatedBy()!=null) {
