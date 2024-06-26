@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
@@ -19,7 +20,9 @@ public class ProjectSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
         MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
 
-        http.csrf((csrf) -> csrf.ignoringRequestMatchers("/saveMsg").ignoringRequestMatchers("/public/**"))
+        http.csrf((csrf) -> csrf
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/public/**"))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/saveMsg")))
                 .authorizeHttpRequests((requests) -> requests.requestMatchers(mvcMatcherBuilder.pattern("/dashboard")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("/displayMessages")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("/closeMsg/**")).hasRole("ADMIN")
@@ -34,7 +37,7 @@ public class ProjectSecurityConfig {
                         .requestMatchers(mvcMatcherBuilder.pattern("/assets/**")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/login")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/logout")).permitAll()
-                        .requestMatchers("/public/**").permitAll())
+                        .requestMatchers(mvcMatcherBuilder.pattern("/public/**")).permitAll())
                 .formLogin(loginConfigurer -> loginConfigurer.loginPage("/login")
                         .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll())
                 .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")

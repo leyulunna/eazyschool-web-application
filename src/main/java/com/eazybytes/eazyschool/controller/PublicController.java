@@ -1,5 +1,7 @@
 package com.eazybytes.eazyschool.controller;
 
+import com.eazybytes.eazyschool.model.Person;
+import com.eazybytes.eazyschool.service.PersonService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
