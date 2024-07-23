@@ -1,7 +1,9 @@
 package com.eazybytes.eazyschool.controller;
 
+import com.eazybytes.eazyschool.model.Courses;
 import com.eazybytes.eazyschool.model.EazyClass;
 import com.eazybytes.eazyschool.model.Person;
+import com.eazybytes.eazyschool.repository.CoursesRepository;
 import com.eazybytes.eazyschool.repository.EazyClassRepository;
 import com.eazybytes.eazyschool.repository.PersonRepository;
 import jakarta.servlet.http.HttpSession;
@@ -25,6 +27,9 @@ public class AdminController {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    CoursesRepository coursesRepository;
 
     @RequestMapping("/displayClasses")
     public ModelAndView displayClasses(Model model) {
@@ -81,6 +86,7 @@ public class AdminController {
             return modelAndView;
         }
         personEntity.setEazyClass(eazyClass);
+        // System.out.println(personEntity.toString());
         personRepository.save(personEntity);
         eazyClass.getPersons().add(personEntity);
         eazyClassRepository.save(eazyClass);
@@ -97,6 +103,15 @@ public class AdminController {
         EazyClass eazyClassSaved = eazyClassRepository.save(eazyClass);
         session.setAttribute("eazyClass",eazyClassSaved);
         ModelAndView modelAndView = new ModelAndView("redirect:/admin/displayStudents?classId="+eazyClass.getClassId());
+        return modelAndView;
+    }
+
+    @GetMapping("/displayCourses")
+    public ModelAndView displayCourses(Model model) {
+        List<Courses> courses = coursesRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("courses_secure.html");
+        modelAndView.addObject("courses",courses);
+        modelAndView.addObject("course", new Courses());
         return modelAndView;
     }
 }
