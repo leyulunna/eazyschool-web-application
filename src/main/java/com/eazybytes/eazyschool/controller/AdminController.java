@@ -38,14 +38,13 @@ public class AdminController {
     @PostMapping("/addNewClass")
     public ModelAndView addNewClass(Model model, @ModelAttribute("eazyClass") EazyClass eazyClass) {
         eazyClassRepository.save(eazyClass);
-        return new ModelAndView("redirect:/admin/displayClasses");
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin/displayClasses");
+        return modelAndView;
     }
 
     @RequestMapping("/deleteClass")
     public ModelAndView deleteClass(Model model, @RequestParam int id) {
         Optional<EazyClass> eazyClass = eazyClassRepository.findById(id);
-        // find the list of Person objects associated with eazyClass
-        // and set each of them null
         for(Person person : eazyClass.get().getPersons()){
             person.setEazyClass(null);
             personRepository.save(person);
