@@ -49,17 +49,26 @@ public class ContactService {
         return msgPage;
     }
 
-    public boolean updateMsgStatus(int contactId){
-        boolean isUpdated = false;
-        Optional<Contact> contact = contactRepository.findById(contactId);
-        // if the contact obj is not null, do the series of call in the lambda func
-        contact.ifPresent(contact1 -> {
-            contact1.setStatus(EazySchoolConstants.CLOSE);
+//    public boolean updateMsgStatus(int contactId){
+//        boolean isUpdated = false;
+//        Optional<Contact> contact = contactRepository.findById(contactId);
+//        // if the contact obj is not null, do the series of call in the lambda func
+//        contact.ifPresent(contact1 -> {
+//            contact1.setStatus(EazySchoolConstants.CLOSE);
 //            contact1.setUpdatedBy(updatedBy);
 //            contact1.setUpdatedAt(LocalDateTime.now());
-        });
-        Contact updatedContact = contactRepository.save(contact.get());
-        if(null != updatedContact && updatedContact.getUpdatedBy()!=null) {
+//        });
+//        Contact updatedContact = contactRepository.save(contact.get());
+//        if(null != updatedContact && updatedContact.getUpdatedBy()!=null) {
+//            isUpdated = true;
+//        }
+//        return isUpdated;
+//    }
+
+    public boolean updateMsgStatus(int contactId){
+        boolean isUpdated = false;
+        int rows = contactRepository.updateStatusById(EazySchoolConstants.CLOSE,contactId);
+        if(rows > 0) {
             isUpdated = true;
         }
         return isUpdated;
