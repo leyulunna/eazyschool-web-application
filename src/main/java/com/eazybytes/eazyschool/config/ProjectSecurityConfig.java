@@ -18,11 +18,13 @@ public class ProjectSecurityConfig {
 
         http.csrf((csrf) -> csrf
                         .ignoringRequestMatchers(new AntPathRequestMatcher("/public/**"))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/api/**"))
                         .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/saveMsg")))
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(mvcMatcherBuilder.pattern("/dashboard")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("/displayProfile")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("/updateProfile")).authenticated()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/**")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("/displayMessages/**")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("/closeMsg/**")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).hasRole("ADMIN")

@@ -11,9 +11,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
+
     List<Contact> findByStatus(String status);
 
     @Query("SELECT c FROM Contact c WHERE c.status = :status")
@@ -30,4 +32,6 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
     @Transactional
     @Modifying
     int updateMsgStatus(String status, int id);
+
+    Optional<Contact> findById(Integer contactId);
 }
