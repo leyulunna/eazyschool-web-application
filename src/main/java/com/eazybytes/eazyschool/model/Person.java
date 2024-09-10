@@ -2,6 +2,7 @@ package com.eazybytes.eazyschool.model;
 
 import com.eazybytes.eazyschool.annotation.FieldsValueMatch;
 import com.eazybytes.eazyschool.annotation.PasswordValidator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -52,17 +53,20 @@ public class Person extends BaseEntity{
     @Email(message = "Please provide a valid confirm email address" )
     // Tell Spring JPA not to operate this value
     @Transient
+    @JsonIgnore
     private String confirmEmail;
 
     @NotBlank(message="Password must not be blank")
     @Size(min=5, message="Password must be at least 5 characters long")
     @PasswordValidator
+    @JsonIgnore
     private String pwd;
 
     @NotBlank(message="Confirm Password must not be blank")
     @Size(min=5, message="Confirm Password must be at least 5 characters long")
     // Tell Spring JPA not to operate this value
     @Transient
+    @JsonIgnore
     private String confirmPwd;
 
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST, targetEntity = Roles.class)
