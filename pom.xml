@@ -12,6 +12,7 @@
 	<artifactId>example_20</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>example_20</name>
+	<packaging>jar</packaging>
 	<description>Eazy School Web Application</description>
 	<properties>
 		<java.version>17</java.version>
@@ -86,7 +87,6 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
