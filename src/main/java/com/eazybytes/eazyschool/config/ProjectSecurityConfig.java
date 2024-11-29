@@ -20,7 +20,8 @@ public class ProjectSecurityConfig {
                         .ignoringRequestMatchers(new AntPathRequestMatcher("/public/**"))
                         .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/api/**"))
                         .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/saveMsg"))
-                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/data-api/**")))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/data-api/**"))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/eazyschool/actuator/**")))
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(mvcMatcherBuilder.pattern("/dashboard")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("/displayProfile")).authenticated()
@@ -30,6 +31,7 @@ public class ProjectSecurityConfig {
                         .requestMatchers(mvcMatcherBuilder.pattern("/displayMessages/**")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("/closeMsg/**")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).hasRole("ADMIN")
+                        .requestMatchers(mvcMatcherBuilder.pattern("/eazyschool/actuator/**")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("/student/**")).hasRole("STUDENT")
                         .requestMatchers(mvcMatcherBuilder.pattern("")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/")).permitAll()

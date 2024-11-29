@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.eazybytes</groupId>
-	<artifactId>example_20</artifactId>
+	<artifactId>example_52</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>example_20</name>
+	<name>example_52</name>
 	<packaging>jar</packaging>
 	<description>Eazy School Web Application</description>
 	<properties>
@@ -86,8 +86,13 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
+		<finalName>eazyschool-aws-deployment</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
